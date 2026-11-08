@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeeAware — Bee Safety & Beekeeper Directory</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="topnav">
+      <span class="brand">🐝 BeeAware</span>
+      <div class="nav-links">
+        <a href="#hive-help">Found a Hive?</a>
+        <a href="#directory">Beekeepers</a>
+        <a href="#learn">About Bees</a>
+        <a href="#plants">Bee-Friendly Plants</a>
+        <a href="#voice">Voice Agent</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Protecting People & Pollinators</p>
+        <p class="hero-tagline">💛 Every Bee Matters 💛</p>
+        <h1>🐝 Found a Beehive?<br />Don't Panic — Call a Beekeeper.</h1>
+        <p class="hero-sub">
+          BeeAware teaches you exactly what to do when bees move into your backyard,
+          and connects you instantly with local beekeepers — from hobbyists to famous
+          experts — who will safely relocate the hive.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-hero" href="#hive-help">🚨 What To Do Right Now</a>
+          <a class="btn btn-hero-alt" href="#directory">📞 Find a Beekeeper</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- MAIN FOCUS: Precautions -->
+      <section id="hive-help" class="panel panel-alert">
+        <h2>🚨 Spotted a Hive or Swarm? Follow These Steps</h2>
+        <p class="panel-desc">
+          These four steps keep you, your family, and the bees safe. Press
+          <strong>🔊 Hear it</strong> and our voice agent will read each step out loud.
+        </p>
+        <p id="tts-warning" class="warning" hidden>
+          ⚠️ This browser does not support text-to-speech. Try Chrome or Edge for voice guidance.
+        </p>
+        <div id="steps-list" class="steps-list"></div>
+      </section>
+
+      <!-- Beekeeper directory -->
+      <section id="directory" class="panel">
+        <h2>📞 Beekeeper Directory</h2>
+        <p class="panel-desc" id="beekeeper-count"></p>
+        <div class="zip-row">
+          <input
+            id="zip-input"
+            type="text"
+            inputmode="numeric"
+            maxlength="5"
+            placeholder="Enter your ZIP code"
+            aria-label="Your ZIP code"
+          />
+          <button id="zip-btn" type="button" class="btn btn-primary">📍 Find Local Beekeepers</button>
+        </div>
+        <p id="zip-msg" class="zip-msg" hidden></p>
+        <div id="beekeeper-list" class="keeper-list"></div>
+
+        <div class="register-box">
+          <h3>🍯 Are You a Beekeeper? Join the Directory</h3>
+          <p class="panel-desc">
+            Register below and your name will appear in the list so neighbors can call you
+            when they find a hive. (Stored locally in this browser — no account needed.)
+          </p>
+          <form id="register-form" novalidate>
+            <div class="form-grid">
+              <label>
+                Your Name *
+                <input name="name" type="text" maxlength="60" placeholder="e.g. Sam Honeywell" required />
+              </label>
+              <label>
+                Phone Number *
+                <input name="phone" type="tel" maxlength="20" placeholder="e.g. 555-123-4567" required />
+              </label>
+              <label>
+                City / Area *
+                <input name="city" type="text" maxlength="60" placeholder="e.g. Maple Grove" required />
+              </label>
+              <label>
+                ZIP Code *
+                <input name="zip" type="text" inputmode="numeric" maxlength="5" placeholder="e.g. 10001" required />
+              </label>
+              <label>
+                Experience Level *
+                <select name="level" required>
+                  <option value="hobby">🌱 Hobby Beekeeper</option>
+                  <option value="pro">🍯 Professional</option>
+                  <option value="famous">⭐ Well-Known Expert</option>
+                </select>
+              </label>
+              <label class="form-wide">
+                Specialty (optional)
+                <input name="specialty" type="text" maxlength="120" placeholder="e.g. Swarm rescue, hive relocation" />
+              </label>
+            </div>
+            <p id="register-msg" class="form-msg" hidden></p>
+            <button type="submit" class="btn btn-primary btn-big">🐝 Register as a Beekeeper</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- About bees -->
+      <section id="learn" class="panel">
+        <h2>📚 Learn About Bees</h2>
+        <p class="panel-desc">The more you know, the less you fear — bees are friends, not foes.</p>
+        <div id="facts-grid" class="info-grid"></div>
+      </section>
+
+      <!-- Plants -->
+      <section id="plants" class="panel">
+        <h2>🌻 Plants That Attract & Feed Bees</h2>
+        <p class="panel-desc">
+          Want to help pollinators? Plant these in your garden or balcony and give bees a
+          safe place to eat and drink.
+        </p>
+        <div id="plants-grid" class="info-grid"></div>
+      </section>
+
+      <!-- Voice agent -->
+      <section id="voice" class="panel">
+        <h2>🗣️ The BeeAware Voice Agent</h2>
+        <p class="panel-desc">
+          Every safety message on this site can be spoken out loud. Record the scripts in
+          your own voice, or let the friendly built-in voice guide you.
+        </p>
+        <div id="voice-slot-list" class="slot-list"></div>
+        <div class="say-row">
+          <input
+            id="say-input"
+            type="text"
+            maxlength="200"
+            placeholder="e.g. Stay calm, the beekeeper is on the way."
+            aria-label="Text for the voice agent to speak"
+          />
+          <button id="say-btn" type="button" class="btn btn-primary">🔊 Speak</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>🐝 BeeAware — keeping people and pollinators safe, together.</p>
+    </footer>
+
+    <div id="contact-modal" class="modal-overlay" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+        <div class="modal-header">
+          <h3 id="contact-title">📞 Contact Beekeeper</h3>
+          <button id="contact-close" type="button" class="btn btn-danger" aria-label="Close">✖</button>
+        </div>
+        <p id="contact-number" class="contact-number"></p>
+        <p id="contact-instructions" class="panel-desc"></p>
+        <div class="contact-actions">
+          <button id="contact-copy" type="button" class="btn btn-text">📋 Copy Number</button>
+          <a id="contact-open-app" class="btn btn-call" href="#">📱 Open Phone App</a>
+        </div>
+        <p id="contact-confirm" class="form-msg msg-ok" hidden></p>
+      </div>
+    </div>
+
+    <div id="message-modal" class="modal-overlay" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="message-title">
+        <div class="modal-header">
+          <h3 id="message-title">✉️ Message Beekeeper</h3>
+          <button id="message-close" type="button" class="btn btn-danger" aria-label="Close">✖</button>
+        </div>
+        <p id="message-note" class="panel-desc"></p>
+        <form id="message-form">
+          <label>
+            Your Name *
+            <input name="sender" type="text" maxlength="60" placeholder="e.g. Alex Gardner" required />
+          </label>
+          <label>
+            Your Message *
+            <textarea name="message" rows="4" maxlength="500" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-big">📨 Send Message</button>
+        </form>
+        <p id="message-confirm" class="form-msg msg-ok" hidden></p>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
