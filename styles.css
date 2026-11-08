@@ -747,14 +747,164 @@ main {
   padding: 24px;
 }
 
-@media (max-width: 640px) {
+/* Hamburger toggle — hidden on desktop */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1.3rem;
+  padding: 6px 12px;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+@media (max-width: 760px) {
+  /* Nav */
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+    padding-top: 10px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 8px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 48px 16px 80px;
+  }
+
   .hero h1 {
-    font-size: 1.9rem;
+    font-size: 1.85rem;
   }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    padding: 6px 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-hero,
+  .btn-hero-alt {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Layout */
+  main {
+    margin-top: -44px;
+    padding: 0 12px 36px;
+    gap: 20px;
+  }
+
   .panel {
-    padding: 22px;
+    padding: 20px 16px;
   }
+
+  .panel h2 {
+    font-size: 1.25rem;
+  }
+
+  /* Steps */
   .step-card {
     flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .step-card .btn-hear {
+    width: 100%;
+  }
+
+  /* Beekeeper cards */
+  .keeper-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+  }
+
+  .keeper-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+  }
+
+  .keeper-actions .btn {
+    padding: 10px 8px;
+    font-size: 0.9rem;
+  }
+
+  /* ZIP + say rows */
+  .zip-row,
+  .say-row {
+    flex-direction: column;
+  }
+
+  .zip-row .btn,
+  .say-row .btn {
+    width: 100%;
+  }
+
+  /* Forms */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Voice slots */
+  .slot-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+  }
+
+  .slot-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+  }
+
+  .slot-actions .btn {
+    padding: 10px 8px;
+    font-size: 0.9rem;
+  }
+
+  /* Contact modal */
+  .contact-number {
+    font-size: 1.5rem;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+  }
+
+  .modal-card {
+    padding: 20px 16px;
   }
 }
