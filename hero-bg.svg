@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Honeycomb cell -->
+    <polygon id="cell" points="30,0 60,17 60,52 30,69 0,52 0,17" fill="none" stroke="#fff8e7" stroke-width="2.5"/>
+    <!-- Bee -->
+    <g id="bee">
+      <ellipse cx="-4" cy="-9" rx="7" ry="4.5" fill="#ffffff" opacity="0.85" transform="rotate(-25 -4 -9)"/>
+      <ellipse cx="5" cy="-9" rx="7" ry="4.5" fill="#ffffff" opacity="0.7" transform="rotate(25 5 -9)"/>
+      <ellipse cx="0" cy="0" rx="11" ry="7.5" fill="#3a2a12"/>
+      <rect x="-6.5" y="-7.5" width="4" height="15" rx="2" fill="#fbbf24"/>
+      <rect x="1.5" y="-7.5" width="4" height="15" rx="2" fill="#fbbf24"/>
+      <circle cx="-11" cy="-1" r="3" fill="#3a2a12"/>
+    </g>
+    <!-- Simple flower -->
+    <g id="flower">
+      <line x1="0" y1="0" x2="0" y2="34" stroke="#2f7a3d" stroke-width="4" stroke-linecap="round"/>
+      <path d="M0 22 Q -12 16 -14 6 Q -2 10 0 20" fill="#3d9b4f"/>
+      <g>
+        <circle cx="0" cy="-12" r="7" fill="currentColor"/>
+        <circle cx="10.4" cy="-4" r="7" fill="currentColor"/>
+        <circle cx="6.4" cy="8.8" r="7" fill="currentColor"/>
+        <circle cx="-6.4" cy="8.8" r="7" fill="currentColor"/>
+        <circle cx="-10.4" cy="-4" r="7" fill="currentColor"/>
+        <circle cx="0" cy="-1" r="6.5" fill="#7c4a03"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- Honeycomb pattern, top area -->
+  <g opacity="0.16">
+    <use href="#cell" x="40" y="20"/><use href="#cell" x="106" y="20"/><use href="#cell" x="172" y="20"/>
+    <use href="#cell" x="73" y="77"/><use href="#cell" x="139" y="77"/><use href="#cell" x="205" y="77"/>
+    <use href="#cell" x="1060" y="30"/><use href="#cell" x="1126" y="30"/>
+    <use href="#cell" x="1027" y="87"/><use href="#cell" x="1093" y="87"/><use href="#cell" x="1159" y="87"/>
+    <use href="#cell" x="520" y="8"/><use href="#cell" x="586" y="8"/>
+    <use href="#cell" x="553" y="65"/>
+  </g>
+  <g opacity="0.11">
+    <use href="#cell" x="300" y="40"/><use href="#cell" x="366" y="40"/>
+    <use href="#cell" x="333" y="97"/>
+    <use href="#cell" x="880" y="15"/><use href="#cell" x="946" y="15"/>
+    <use href="#cell" x="913" y="72"/>
+  </g>
+
+  <!-- Beehive hanging from a branch, top right -->
+  <g transform="translate(1000,150) scale(0.85)">
+    <path d="M-90 -70 Q -30 -95 40 -88" fill="none" stroke="#5b3a17" stroke-width="10" stroke-linecap="round"/>
+    <line x1="0" y1="-86" x2="0" y2="-58" stroke="#5b3a17" stroke-width="5"/>
+    <g fill="#f6c453" stroke="#b97d10" stroke-width="3">
+      <ellipse cx="0" cy="-38" rx="34" ry="16"/>
+      <ellipse cx="0" cy="-14" rx="46" ry="19"/>
+      <ellipse cx="0" cy="14" rx="52" ry="21"/>
+      <ellipse cx="0" cy="44" rx="46" ry="19"/>
+      <ellipse cx="0" cy="68" rx="32" ry="14"/>
+    </g>
+    <ellipse cx="0" cy="46" rx="13" ry="10" fill="#4a2f0e"/>
+  </g>
+
+  <!-- Garden along the bottom -->
+  <g opacity="0.9">
+    <path d="M0 470 Q 150 440 300 468 T 600 466 T 900 470 T 1200 462 L1200 520 L0 520 Z" fill="#2f7a3d" opacity="0.35"/>
+    <g transform="translate(90,452)" color="#f472b6"><use href="#flower"/></g>
+    <g transform="translate(170,468)" color="#fde047"><use href="#flower"/></g>
+    <g transform="translate(255,448)" color="#fb923c"><use href="#flower"/></g>
+    <g transform="translate(700,462)" color="#f472b6"><use href="#flower"/></g>
+    <g transform="translate(790,446)" color="#fde047"><use href="#flower"/></g>
+    <g transform="translate(1120,455)" color="#fb923c"><use href="#flower"/></g>
+    <g transform="translate(1040,470)" color="#f472b6"><use href="#flower"/></g>
+  </g>
+
+  <!-- Bees flying around -->
+  <g opacity="0.9">
+    <g transform="translate(150,150)"><use href="#bee"/></g>
+    <g transform="translate(880,200) rotate(15)"><use href="#bee"/></g>
+    <g transform="translate(1080,260) rotate(-12)"><use href="#bee"/></g>
+    <g transform="translate(420,120) rotate(8) scale(0.8)"><use href="#bee"/></g>
+    <g transform="translate(640,180) rotate(-6) scale(0.7)"><use href="#bee"/></g>
+  </g>
+</svg>

@@ -94,7 +94,9 @@ select {
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, #b45309 0%, #d97706 55%, #f59e0b 100%);
+  background:
+    url("hero-bg.svg") center / cover no-repeat,
+    linear-gradient(135deg, rgba(180, 83, 9, 0.92) 0%, rgba(217, 119, 6, 0.92) 55%, rgba(245, 158, 11, 0.92) 100%);
   color: #fff;
   padding: 72px 24px 96px;
   text-align: center;
@@ -103,6 +105,16 @@ select {
 .hero-inner {
   max-width: 780px;
   margin: 0 auto;
+}
+
+.hero-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  margin-bottom: 24px;
 }
 
 .hero-eyebrow {
@@ -174,6 +186,7 @@ select {
 .btn-hero-alt:hover {
   background: rgba(255, 255, 255, 0.3);
 }
+
 
 /* Layout */
 main {
@@ -797,6 +810,12 @@ main {
     font-size: 1.85rem;
   }
 
+  .hero-img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 16px;
+  }
+
   .hero-sub {
     font-size: 1rem;
   }
@@ -816,6 +835,7 @@ main {
     width: 100%;
     text-align: center;
   }
+
 
   /* Layout */
   main {
