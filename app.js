@@ -1,22 +1,7 @@
-import { VOICE_SLOTS, speak, playVoice, getSlotRecording, saveSlotRecording, deleteSlotRecording } from "./voice.js";
+import { VOICE_SLOTS, speak, playVoice } from "./voice.js";
 import { SAMPLE_BEEKEEPERS, LEVEL_LABELS, HIVE_STEPS, BEE_FACTS, BEE_PLANTS, ZIP_COORDS } from "./data.js";
 
 const STORAGE_KEY = "bee_aware_beekeepers";
-const SLOT_EMOJIS = {
-  hiveSpotted: "🏠",
-  stayCalm: "🧘",
-  beekeeperCalled: "📞",
-  showNumber: "📱",
-  swarmSafety: "🐝",
-  thankYou: "💛",
-  recordingStart: "🎙️",
-};
-
-let recordingSlot = null;
-let recorder = null;
-let chunks = [];
-
-const micSupported = !!navigator.mediaDevices?.getUserMedia;
 
 /* ---------- Beekeeper directory ---------- */
 
@@ -363,100 +348,6 @@ function renderPlants() {
   });
 }
 
-/* ---------- Voice studio ---------- */
-
-function renderVoiceStudio() {
-  const list = document.getElementById("voice-slot-list");
-  list.innerHTML = "";
-  VOICE_SLOTS.forEach((slot) => {
-    const recorded = !!getSlotRecording(slot.id);
-    const isRecording = recordingSlot === slot.id;
-
-    const card = document.createElement("div");
-    card.className = `slot-card ${recorded ? "recorded" : ""}`;
-
-    const info = document.createElement("div");
-    info.className = "slot-info";
-    const title = document.createElement("strong");
-    title.textContent = `${SLOT_EMOJIS[slot.id] || "🔊"} ${slot.label}`;
-    const script = document.createElement("p");
-    script.className = "slot-script";
-    script.textContent = `"${slot.script}"`;
-    const badge = document.createElement("span");
-    badge.className = `slot-badge ${recorded ? "badge-custom" : "badge-tts"}`;
-    badge.textContent = recorded ? "Your voice" : "Built-in voice";
-    info.append(title, script, badge);
-
-    const actions = document.createElement("div");
-    actions.className = "slot-actions";
-
-    const playBtn = document.createElement("button");
-    playBtn.type = "button";
-    playBtn.className = "btn btn-primary";
-    playBtn.textContent = "▶️ Play";
-    playBtn.addEventListener("click", () => playVoice(slot.id, slot.script));
-    actions.appendChild(playBtn);
-
-    if (micSupported) {
-      const recBtn = document.createElement("button");
-      recBtn.type = "button";
-      recBtn.className = `btn btn-record ${isRecording ? "recording-active" : ""}`;
-      recBtn.textContent = isRecording ? "⏹️ Stop" : "🎙️ Record";
-      recBtn.addEventListener("click", () => toggleRecording(slot.id));
-      actions.appendChild(recBtn);
-    }
-
-    if (recorded) {
-      const delBtn = document.createElement("button");
-      delBtn.type = "button";
-      delBtn.className = "btn btn-danger";
-      delBtn.title = "Delete this recording";
-      delBtn.textContent = "🗑️";
-      delBtn.addEventListener("click", () => {
-        deleteSlotRecording(slot.id);
-        renderVoiceStudio();
-      });
-      actions.appendChild(delBtn);
-    }
-
-    card.append(info, actions);
-    list.appendChild(card);
-  });
-}
-
-async function toggleRecording(slotId) {
-  if (recordingSlot === slotId) {
-    recorder?.stop();
-    return;
-  }
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const rec = new MediaRecorder(stream);
-    chunks = [];
-    rec.ondataavailable = (e) => chunks.push(e.data);
-    rec.onstop = () => {
-      const blob = new Blob(chunks, { type: rec.mimeType || "audio/webm" });
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        saveSlotRecording(slotId, reader.result);
-        renderVoiceStudio();
-      };
-      reader.readAsDataURL(blob);
-      stream.getTracks().forEach((t) => t.stop());
-      recordingSlot = null;
-      recorder = null;
-      renderVoiceStudio();
-    };
-    rec.start();
-    recorder = rec;
-    recordingSlot = slotId;
-    playVoice("recordingStart", VOICE_SLOTS.find((s) => s.id === "recordingStart").script);
-    renderVoiceStudio();
-  } catch {
-    alert("Microphone access is needed to record your voice.");
-  }
-}
-
 /* ---------- ZIP search ---------- */
 
 function setupZipSearch() {
@@ -485,20 +376,6 @@ function setupZipSearch() {
   btn.addEventListener("click", search);
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") search();
-  });
-}
-
-/* ---------- Say anything ---------- */
-
-function setupSayBox() {
-  const input = document.getElementById("say-input");
-  const btn = document.getElementById("say-btn");
-  btn.addEventListener("click", () => {
-    const text = input.value.trim();
-    if (text) speak(text);
-  });
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") btn.click();
   });
 }
 
@@ -536,5 +413,3 @@ setupMessageModal();
 setupContactModal();
 renderFacts();
 renderPlants();
-renderVoiceStudio();
-setupSayBox();

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BeeAware — Bee Safety & Beekeeper Directory</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body>
     <nav class="topnav">
@@ -15,7 +15,6 @@
         <a href="#directory">Beekeepers</a>
         <a href="#learn">About Bees</a>
         <a href="#plants">Bee-Friendly Plants</a>
-        <a href="#voice">Voice Agent</a>
       </div>
     </nav>
 
@@ -133,25 +132,6 @@
         <div id="plants-grid" class="info-grid"></div>
       </section>
 
-      <!-- Voice agent -->
-      <section id="voice" class="panel">
-        <h2>🗣️ The BeeAware Voice Agent</h2>
-        <p class="panel-desc">
-          Every safety message on this site can be spoken out loud. Record the scripts in
-          your own voice, or let the friendly built-in voice guide you.
-        </p>
-        <div id="voice-slot-list" class="slot-list"></div>
-        <div class="say-row">
-          <input
-            id="say-input"
-            type="text"
-            maxlength="200"
-            placeholder="e.g. Stay calm, the beekeeper is on the way."
-            aria-label="Text for the voice agent to speak"
-          />
-          <button id="say-btn" type="button" class="btn btn-primary">🔊 Speak</button>
-        </div>
-      </section>
     </main>
 
     <footer class="footer">
@@ -196,6 +176,6 @@
       </div>
     </div>
 
-    <script type="module" src="app.js?v=4"></script>
+    <script type="module" src="app.js?v=5"></script>
   </body>
 </html>
